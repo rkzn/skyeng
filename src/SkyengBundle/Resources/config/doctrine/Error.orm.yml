@@ -1,0 +1,25 @@
+SkyengBundle\Entity\Error:
+    type: entity
+    table: test_errors
+    repositoryClass: SkyengBundle\Entity\ErrorRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        answer:
+            type: string
+            length: 255
+        quantity:
+            type: integer
+
+    manyToOne:
+        word:
+            targetEntity: SkyengBundle\Entity\Word
+            inversedBy: errors
+            joinColumn:
+                name: word_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

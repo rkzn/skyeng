@@ -1,0 +1,73 @@
+{% extends 'SkyengBundle::main.html.twig' %}
+{% macro curly(contents) %}
+    {{ '{{' ~ contents ~ '}}' }}
+{% endmacro %}
+{% import _self as ng %}
+{% block content %}
+    <div class="site-index" ng-controller="DictionaryController as app" ng-init="">
+        <h1 class="">
+            Простой тест английского языка
+        </h1>
+        <div ng-hide="inProgress">
+
+            <h5 class="message">
+                Чтобы начать тест введите ваше имя и нажмите на кнопку "Начать тест"
+            </h5>
+
+            <hr>
+
+            <form name="app.usernameForm" class="form-group" method="post"
+                  ng-submit="app.setUser()"
+                  novalidate>
+                <div class="form-group">
+                    <label for="username-input">Ваше имя</label>
+                    <input type="text" class="form-control" name="username" id="username-input" ng-model="username" required autocomplete="off">
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                    Начать тест
+                </button>
+            </form>
+        </div>
+
+        <div ng-show="inProgress">
+
+            <div class="panel panel-default" ng-show="questionReady" ng-hide="isOver" id="currentQuestion">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h4>
+                    {{ng.curly('username')}}, выберите перевод для "{{ ng.curly('question') }}"
+                    </h4>
+                </div>
+                <ul class="list-group" ng-repeat="option in options">
+                    <li class="list-group-item">
+                        <label>
+                        <input type="radio" name="answer" tabindex="0" class="" value="{{ ng.curly('option') }}" ng-model="answer">
+                        {{ ng.curly('option') }}
+                        </label>
+                    </li>
+                </ul>
+                <div class="panel-footer">
+                    <button ng-click="checkAnswer()" class="btn btn-primary">Проверить</button>
+                </div>
+            </div>
+
+            <div ng-show="isOver">
+                <div class="alert alert-danger" ng-if="errors == 3">
+                    <h4>Тест окончен</h4>
+                    <p>Вы правильно ответили на {{ ng.curly('points') }} вопросов</p>
+                    <p>У вас {{ ng.curly('errors') }} ошибки.</p>
+                    <p>Вы не прошли тест</p>
+                    <p><button type="button" class="btn btn-danger" ng-click="start()">Попробовать еще раз</button></p>
+                </div>
+
+                <div class="alert alert-success" ng-if="errors < 3">
+                    <h4>Тест окончен</h4>
+                    <p>Поздравляем!</p>
+                    <p>Вы правильно ответили на {{ ng.curly('points') }} вопросов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

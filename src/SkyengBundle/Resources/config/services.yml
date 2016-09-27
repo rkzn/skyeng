@@ -1,0 +1,4 @@
+services:
+#    skyeng.example:
+#        class: SkyengBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

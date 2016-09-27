@@ -1,0 +1,18 @@
+SkyengBundle\Entity\Result:
+    type: entity
+    table: test_result
+    repositoryClass: SkyengBundle\Entity\ResultRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 255
+        points:
+            type: integer
+        errors:
+            type: integer

@@ -1,0 +1,21 @@
+skyeng_homepage:
+    path:     /
+    defaults: { _controller: SkyengBundle:Default:index }
+
+skyeng_get_question:
+    path: /question
+    defaults: { _controller: SkyengBundle:Default:question }
+    options:
+        expose: true
+
+skyeng_check_answer:
+    path: /check
+    defaults: { _controller: SkyengBundle:Default:checkAnswer }
+    options:
+        expose: true
+
+skyeng_save_result:
+    path: /save
+    defaults: { _controller: SkyengBundle:Default:save }
+    options:
+        expose: true

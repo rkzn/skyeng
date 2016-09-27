@@ -1,0 +1,22 @@
+SkyengBundle\Entity\Word:
+    type: entity
+    table: test_words
+    repositoryClass: SkyengBundle\Entity\WordRepository
+    indexes:
+        idx_eng:
+            columns: [ eng ]
+        idx_rus:
+            columns: [ rus ]
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        eng:
+            type: string
+            length: 255
+        rus:
+            type: string
+            length: 255
